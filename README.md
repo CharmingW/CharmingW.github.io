@@ -1,2 +1,2 @@
 - [String、StringBuffer和StringBuilder的区别](/java/String、StringBuffer和StringBuilder的区别.md)
-- [HashMap & Hashtable 区别](/java/HashMap&Hashtable.md)
+- [Java集合框架经典问题(一)：HashMap与Hashtable区别](/java/HashMap&Hashtable.md)
