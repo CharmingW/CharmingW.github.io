@@ -1,7 +1,2 @@
-- [string](String、StringBuffer和StringBuilder的区别.md)
-<<<<<<< HEAD
--
--
--
-=======
->>>>>>> origin/master
+- [String、StringBuffer和StringBuilder的区别](/java/String、StringBuffer和StringBuilder的区别.md)
+- [HashMap & Hashtable 区别](/java/HashMap&Hashtable.md)
