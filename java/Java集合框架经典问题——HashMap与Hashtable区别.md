@@ -2,11 +2,11 @@
 
 > 俗话说：程序 = 数据结构 + 算法，搞定数据结构就相当于搞定了一半。数据结构是以某种形式将数据组织在一起的集合，它不仅存储数据，还支持访问和处理数据的操作。Java 提供了几个能有效地组织和操作数据的数据结构，这些数据结构通常称为 Java 集合框架。在平常的学习开发中，灵活熟练地使用这些集合框架，可以很明显地提高我们的开发效率，当然仅仅会用还是不够的，理解其中的设计思想与原理才能更好地提高我们的开发水平。
 
-![Java集合框架图](/images/20160918105654_491.jpg)
+![Java集合框架图](https://charmingw.github.io/images/20160918105654_491.jpg)
 
-![Java集合框架简化图](/images/1337080070_5795.jpg)
+![Java集合框架简化图](https://charmingw.github.io/images/1337080070_5795.jpg)
 
-![Collection接口方法](/images/2017-05-09_153916.png)
+![Collection接口方法](https://charmingw.github.io/images/2017-05-09_153916.png)
 
 在 Java 2 之前，Java 是没有完整的集合框架的。它只有一些简单的可以自扩展的容器类，比如 `Vector` `，Stack` ， `Hashtable` 等。这些容器类在使用的过程中由于效率问题饱受诟病，因此在Java 2中，Java设计者们进行了大刀阔斧的整改，重新设计，于是就有了现在的集合框架。需要注意的是，之前的那些容器类库并没有被弃用而是进行了保留，主要是为了向下兼容的目的，但我们在平时使用中还是应该尽量少用。
 
@@ -40,9 +40,9 @@ public class Hashtable<K,V>
 
 # 原理
 
-![put方法流程图](/images/Image.png)
+![put方法流程图](https://charmingw.github.io/images/Image.png)
 
-![HashMap存储](/images/HashMap存储.png)
+![HashMap存储](https://charmingw.github.io/images/HashMap存储.png)
 
 HashMap基于hashing原理，我们通过 `put`() 和 `get`() 方法储存和获取对象。当我们将键值对传递给put()方法时，它调用键对象的 `hashCode`() 方法来计算 `hashcode` ，让后找到 `bucket` 位置来储存值对象。当获取对象时，通过键对象的 `equals`() 方法找到正确的键值对，然后返回值对象。 `HashMap` 使用链表来解决碰撞问题，当发生碰撞了，对象将会储存在链表的下一个节点中。  `HashMap` 在每个链表节点中储存键值对对象。
 
@@ -61,6 +61,8 @@ HashMap基于hashing原理，我们通过 `put`() 和 `get`() 方法储存和获
 ```java
 //Hashtable
 public synchronized V put(K key, V value)
+
+
 
 //HashMap
 public V put(K key, V value)
