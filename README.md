@@ -6,11 +6,11 @@
 
 ## Java
 - 集合框架
-  - [Java 集合框架经典问题——HashMap与 Hashtable 区别](/java/集合/Java集合框架经典问题——HashMap与Hashtable区别.md)
+  - [Java 集合框架经典问题——HashMap与 Hashtable 区别](/java/Java集合框架经典问题——HashMap与Hashtable区别.md)
 - 多线程
 - I/O
 - String
-  - [String、StringBuffer 和 StringBuilder 的区别](/java/String/、StringBuffer和StringBuilder的区别.md)
+  - [String、StringBuffer 和 StringBuilder 的区别](/java/String、StringBuffer和StringBuilder的区别.md)
 - 异常
 - 面向对象
 - 多态
@@ -18,6 +18,8 @@
 - 泛型
 - 设计模式
 - JVM
+- 正则表达式
+  - [常用的正则表达式的书写](java/正则表达式/常用的正则表达式的书写.md)
 
 
 ## 算法与数据结构
@@ -51,3 +53,9 @@
 
 
 ## 操作系统、数据库和网络
+
+
+## 工作分享
+- [混淆打断点失败](工作分享/混淆打断点失败.md)
+- [chrome插件分享](工作分享/chrome插件分享.md)
+- [fd泄露](工作分享/fd泄露.md)
