@@ -6,11 +6,11 @@
 
 ## Java
 - 集合框架
-  - [Java 集合框架经典问题——HashMap与 Hashtable 区别](/java/Java集合框架经典问题——HashMap与Hashtable区别.md)
+  - [Java 集合框架经典问题——HashMap与 Hashtable 区别](/java/集合/Java集合框架经典问题——HashMap与Hashtable区别.md)
 - 多线程
 - I/O
 - String
-  - [String、StringBuffer 和 StringBuilder 的区别](/java/String、StringBuffer和StringBuilder的区别.md)
+  - [String、StringBuffer 和 StringBuilder 的区别](/java/String/String、StringBuffer和StringBuilder的区别.md)
 - 异常
 - 面向对象
 - 多态
