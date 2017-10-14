@@ -1,8 +1,6 @@
 # Android异步消息机制-深入理解Handler、Looper和MessageQueue之间的关系
 
-相信做安卓的很多人都遇到过这方面的问题，什么是异步消息机制，什么又是`Handler`、`Looper`和`MessageQueue`，
-它们之间又有什么关系？它们是如何协作来保证安卓app的正常运行？它们在开发中具体的使用场景是怎样的？
-今天，就让我们来揭开这几个Android异步消息机制中重要角色的神秘面纱。
+相信做安卓的很多人都遇到过这方面的问题，什么是异步消息机制，什么又是`Handler`、`Looper`和`MessageQueue`，它们之间又有什么关系？它们是如何协作来保证安卓app的正常运行？它们在开发中具体的使用场景是怎样的？今天，就让我们来揭开这几个Android异步消息机制中重要角色的神秘面纱。
 
 
 ## 一、写在前面
@@ -542,7 +540,18 @@ mCallback.handleMessage(msg)
 这也是能够异步通信的原因。
 4. Android 提供的 `AsyncTask`、`HandlerThread`等等都用到了异步消息机制。
 
+最后借用一张图说明Android异步消息机制
+![Android异步消息机制](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507989458477&di=388a1483024d6ce5cace5a131be4d391&imgtype=0&src=http%3A%2F%2Fimages2015.cnblogs.com%2Fblog%2F678225%2F201605%2F678225-20160515184153930-1748602173.png)
+
 ## 四、写在最后
 至此，Android 异步消息机制就讲解完毕了，有木有一种醍醐灌顶的感觉，哈哈~~~~，这篇文章涉及到的源码不难，非常好理解，关键还是要自己去阅读源码，理解其原理，做到知其然亦知其所以然，这个道理对于大部分领域的学习都适用吧，要知道，Android发展到现在，技术越来越成熟，早已不是那个写几个界面就能拿高薪的时代了，市场对于Android 工程师的要求越来越高，这也提醒着我们要跟上技术发展的步伐，时刻学习，避免被淘汰。
 
 由于水平有限，文章可能会有不少纰漏，还请读者能够指正，Android SDK 源码的广度和深度也不是小小篇幅能够概括的，未能尽述之处，还请多多包涵。
+
+欢迎关注个人微信公众号：**Charming写字的地方**
+CSDN：http://blog.csdn.net/charmingwong
+简书：http://www.jianshu.com/u/05686c7c92af
+掘金：https://juejin.im/user/59924ed5f265da3e161aa74e
+Github主页：https://charmingw.github.io/
+
+欢迎转载~~~
