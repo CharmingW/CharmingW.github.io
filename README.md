@@ -2,6 +2,7 @@
 
 ## Android
 - [Android 触摸事件传递](/android/触摸事件传递.md)
+- [Android异步消息机制-深入理解Handler、Looper和MessageQueue之间的关系](/android\Android异步消息机制-深入理解Handler、Looper和MessageQueue关系)
 
 
 ## Java
