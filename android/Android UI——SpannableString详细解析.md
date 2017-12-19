@@ -30,16 +30,16 @@ spannableString.setSpan(Object what, int start, int end, int flags);
     + SPAN_EXCLUSIVE_INCLUSIVE：不包括开始下标，但包括结束下标
     + SPAN_INCLUSIVE_INCLUSIVE：既包括开始下标，又包括结束下标
     + SPAN_EXCLUSIVE_EXCLUSIVE：不包括开始下标，也不包括结束下标
-  
+
 这里涉及到一个重要的角色，就是各种各样的span，它决定我们要对文字的进行怎样的润饰，而后三个参数决定润饰哪些文字，为了方便起见，后面的flags默认都使用SPAN_INCLUSIVE_EXCLUSIVE模式。
 
 ## 各种Span
 
 先来看一张类结构图，了解各种Span之间的关系  
 
-![image](C:/Users/56223/Pictures/Screenshots/屏幕截图(3).png)
+![Span类结构图](http://upload-images.jianshu.io/upload_images/3279407-426f8688601a6846?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-可以看出所有Span都继承于CharacterStyle这个臭相公类，另外MetricAffectingSpan、ReplacementSpan和ClickableSpan都是抽象类，下面展示一些常用的Span
+可以看出所有Span都继承于CharacterStyle这个抽象类，另外MetricAffectingSpan、ReplacementSpan和ClickableSpan都是抽象类，下面展示一些常用的Span
 
 #### ForegroundColorSpan
 代码
@@ -52,8 +52,7 @@ mTextView.setText(spannableString);
 ```
 ForegroundColorSpan：前景色，也就是对文字上色，颜色设置为GREEN，start为4，end为7，应该是“陈奕迅”三个字显示为绿色，看一下实际效果  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-204029.png)
-
+![ForegroundColorSpan](http://upload-images.jianshu.io/upload_images/3279407-13a18b2550659258?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### BackgroudColorSpan
 代码
@@ -66,7 +65,8 @@ mTextView.setText(spannableString);
 ```
 BackgroudColorSpan：与ForegroundColorSpan类似，对文字背景上色  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-204426.png)
+![BackgroudColorSpan](http://upload-images.jianshu.io/upload_images/3279407-f03bf6741c014b7a?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ### ClickableSpan
 代码
 
@@ -88,7 +88,7 @@ mTextView.setText(spannableString);
 ```
 ClickableSpan：是一个抽象类，实现可点击效果，可以重写onClick方法实现点击事件，这里点击“陈奕迅”三个字简单地弹toast  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-204626.gif)
+![ClickableSpan](http://upload-images.jianshu.io/upload_images/3279407-cc965d594f63ad6e?imageMogr2/auto-orient/strip)
 
 ### URLSpan
 代码
@@ -101,7 +101,7 @@ mTextView.setText(spannableString);
 ```
 URLSpan：实现超链接的效果，继承于ClickableSpan，点击实现跳转到浏览器  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-204747.gif)
+![URLSpan](http://upload-images.jianshu.io/upload_images/3279407-9a811a4bbc37a169?imageMogr2/auto-orient/strip)
 
 
 ### MaskFilterSpan
@@ -140,6 +140,7 @@ BlurMaskFilter(float radius, Blur style)
     - BlurMaskFilter.Blur.INNER：内部模糊
     - BlurMaskFilter.Blur.SOLID：内部加粗，外部模糊
 
+![MaskFilterSpan](http://upload-images.jianshu.io/upload_images/3279407-5f324e66df09ad26?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### RelativeSizeSpan
 代码
@@ -151,7 +152,7 @@ mTextView.setText(spannableString);
 ```
 RelativeSizeSpan：设置字体的相对大小，这里设置为TextView大小的1.5倍，看图  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-205307.png)
+![RelativeSizeSpan](http://upload-images.jianshu.io/upload_images/3279407-f4807205d09aaf02?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### AbsoluteSizeSpan
 代码
@@ -163,7 +164,7 @@ mTextView.setText(spannableString);
 ```
 AbsoluteSizeSpan：设置字体的相绝对大小，40表示文字大小，true表示单位为dip，若为false则表示px  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-205530.png)
+![AbsoluteSizeSpan](http://upload-images.jianshu.io/upload_images/3279407-7c981e0df4a6acb8?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### ScaleXSpan
 代码
@@ -174,8 +175,7 @@ spannableString.setSpan(scaleXSpan, 4, 7, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 mTextView.setText(spannableString);
 ```
 ScaleXSpan：设置字体x轴缩放，1.5表示x轴放大为1.5倍，效果如图  
-
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-205639.png)
+![ScaleXSpan](http://upload-images.jianshu.io/upload_images/3279407-4a0b22b0386a660d?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### StyleSpan
 代码
@@ -191,7 +191,7 @@ mTextView.setText(spannableString);
 ```
 StyleSpan：设置文字样式，如斜体、粗体  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-205753.png)
+![StyleSpan](http://upload-images.jianshu.io/upload_images/3279407-2c05b1c69590d9d9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### TypefaceSpan
 代码
@@ -207,7 +207,7 @@ mTextView.setText(spannableString);
 ```
 TypefaceSpan：设置文字字体类型，如monospace、serif和sans-serif等等  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-205906.png)
+![TypefaceSpan](http://upload-images.jianshu.io/upload_images/3279407-91e092103d5700aa?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### TextAppearanceSpan
 代码
@@ -219,7 +219,7 @@ mTextView.setText(spannableString);
 ```
 TextAppearanceSpan：设置文字外貌，通过style资源设置，这里使用系统的style资源  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-210016.png)
+![TextAppearanceSpan](http://upload-images.jianshu.io/upload_images/3279407-0faf3f36473230a4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### UnderlineSpan
 代码
@@ -231,7 +231,7 @@ mTextView.setText(spannableString);
 ```
 UnderlineSpan：设置文字下划线，强调突出文字时可以使用该span  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-210124.png)    
+![UnderlineSpan](http://upload-images.jianshu.io/upload_images/3279407-aded14e1038ec9cc?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 ### StrikethroughSpan
@@ -244,8 +244,7 @@ mTextView.setText(spannableString);
 ```
 StrikethroughSpan：设置文字删除线  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-210250.png)
-
+![StrikethroughSpan](http://upload-images.jianshu.io/upload_images/3279407-c62f06c0f905a2d0?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ### SuperscriptSpan
 代码
 ```
@@ -258,7 +257,8 @@ mTextView.setText(spannableString);
 ```
 SuperscriptSpan：设置文字为上标  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-211016.png)
+![SuperscriptSpan](http://upload-images.jianshu.io/upload_images/3279407-d646beac88cef2de?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 ### SubscriptSpan
 代码
@@ -272,7 +272,7 @@ mTextView.setText(spannableString);
 ```
 SubscriptSpan：设置文字为下标  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-211130.png)
+![SubscriptSpan](http://upload-images.jianshu.io/upload_images/3279407-94e49581ac9b16ff?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### ImageSpan
 代码
@@ -284,8 +284,7 @@ mTextView.setText(spannableString);
 ```
 ImageSpan：设置图片  
 
-![image](C:/Users/56223/Pictures/SpannableString/device-2017-12-18-211227.png)
-
+![ImageSpan](http://upload-images.jianshu.io/upload_images/3279407-7d580ccb20d9e506?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## 总结
 
@@ -309,3 +308,7 @@ ImageSpan：设置图片
 - ImageSpan：图片
 
 这些Span能够很好地帮助我们润色文字，以非常简单地方式获得复杂和绚丽的文字效果，着实是开发中的一大利器，喜欢的朋友收藏备用吧
+
+### **感谢阅读！**
+
+### **欢迎关注个人微信公众号：Charming写字的地方**
