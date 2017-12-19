@@ -1,65 +1,371 @@
-# Android触摸事件传递机制
+## 查找
+```
+SELECT 列名称 FROM 表名称
+```
+以及
+```
+SELECT * FROM 表名称
+```
 
-在安卓开发中会时常碰到滑动冲突的情况：  
-比如有一个水平滑动的 ViewPager 里面有 Fragment  
-Fragment 里面有水平滑动的 ViewGroup  
-当你的手指在屏幕水平滑动时，就会发生冲突  
-那怎么解决这种冲突呢？  
-首先开发者需要对 Activity、ViewGroup、View 的事件传递机制有个很好的认识。
+Persons 表
+
+|Id|LastName|FirstName|Address|City|
+|-|-|-|-|-|
+|1|	Adams|	John|	Oxford Street|	London|
+|2|	Bush	|George	|Fifth Avenue|	New York|
+|3|	Carter	|Thomas|Changan Street|	Beijing|
+
+获取名为 "LastName" 和 "FirstName" 的列的内容
+```
+SELECT LastName,FirstName FROM Persons
+```
+
+结果
+
+|LastName|	FirstName|
+|-|-|
+|Adams	|John|
+|Bush	|George|
+|Carter	|Thomas|
+
+从 "Persons" 表中选取所有的列
+```
+SELECT * FROM Persons
+```
+
+结果
+
+Id	|LastName	|FirstName|	Address|	City
+-|-|-|-|-
+1|	Adams|	John	|Oxford Street|	London
+2	|Bush	|George	|Fifth Avenue	|New York
+3	|Carter|	Thomas	|Changan Street	|Beijing
+
+## 更新
+```
+UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+```
+Persons 表
+
+LastName	|FirstName	|Address|	City
+-|-|-|-
+Gates	Bill	|Xuanwumen |10	|Beijing
+Wilson	 |	|Champs-Elysees|
+
+更新某一行中的一个列，为 lastname 是 "Wilson" 的人添加 firstname
+```
+UPDATE Person SET FirstName = 'Fred' WHERE LastName = 'Wilson'
+```
+
+结果
+
+LastName	|FirstName|	Address|	City
+-|-|-|-
+Gates	Bill	|Xuanwumen |10	|Beijing
+Wilson|	Fred	|Champs-Elysees	|
+
+更新某一行中的若干列，修改地址（address），并添加城市名称（city）
+```
+UPDATE Person SET Address = 'Zhongshan 23', City = 'Nanjing' WHERE LastName = 'Wilson'
+```
+
+结果
+
+LastName	|FirstName|	Address|	City
+-|-|-|-
+Gates|	Bill	|Xuanwumen 10|	Beijing
+Wilson	|Fred	|Zhongshan 23	|Nanjing
+
+## 插入
+```
+INSERT INTO 表名称 VALUES (值1, 值2,....)
+```
+指定所要插入数据的列
+```
+INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
+```
+Persons 表
+
+LastName|	FirstName|	Address|	City
+-|-|-|-
+Carter|	Thomas|	Changan Street|	Beijing
+
+插入新的行
+```
+INSERT INTO Persons VALUES ('Gates', 'Bill', 'Xuanwumen 10', 'Beijing')
+```
+结果
+
+LastName|	FirstName|	Address	|City
+-|-|-|-
+Carter|	Thomas|	Changan Street|	Beijing
+Gates	|Bill|	Xuanwumen 10|	Beijing
+
+在指定的列中插入数据
+
+```
+INSERT INTO Persons (LastName, Address) VALUES ('Wilson', 'Champs-Elysees')
+```
+结果
+
+LastName|	FirstName|	Address|	City
+-|-|-|-
+Carter|	Thomas|	Changan Street|	Beijing
+Gates|	Bill|	Xuanwumen 10|	Beijing
+Wilson|	 |	Champs-Elysees	| |
+## 删除
+```
+DELETE FROM 表名称 WHERE 列名称 = 值
+```
+Persons 表
+
+LastName|	FirstName|	Address	|City
+-|-|-|-
+Carter|	Thomas|	Changan Street|	Beijing
+Gates	|Bill|	Xuanwumen 10|	Beijing
+
+删除FirstName为"Bill"的行
+
+```
+DELETE FROM Person WHERE FirstName = 'Bill'
+```
+结果
+LastName|	FirstName|	Address|	City
+-|-|-|-
+Carter|	Thomas|	Changan Street|	Beijing
+
+删除所有行
+
+```
+DELETE FROM table_name
+```
+或
+
+```
+DELETE * FROM table_name
+```
 
 
-## 触摸事件的类型
+## WHERE
+```
+SELECT 列名称 FROM 表名称 WHERE 列 运算符 值
+```
 
-触摸事件对应的是MotionEvent类，事件类型主要有三种：
-- ACTION_DOWN: 用户手指按下屏幕，标志着一次触摸事件开始。
-- ACTION_MOVE: 用户手指按下屏幕之后，在松开之前，如果滑动的距离超过了一定值，则会
-  被判定为 ACITON_MOVE 操作。
-- ACTION_UP: 用户手指离开屏幕，标志着一次完整触摸事件结束。
+下面的运算符可在 WHERE 子句中使用
 
-一次屏幕触摸操作，一定会产生 `ACTION_DOWN` 和 `ACTION_UP` 两种事件  
-如果用户按下之后手指右移动一定的距离，则会发生 `ACTION_MOVE` 事件  
-如果只是点了一下，那么则不会发生。
+|=	|等于|
+|-|-|
+|<>	|不等于|
+|>	|大于|
+|<	|小于|
+|>=	|大于等于|
+|<=	|小于等于|
+|BETWEEN	|在某个范围内|
+|LIKE	|搜索某种模式|
+注释：在某些版本的 SQL 中，操作符 <> 可以写为 !=
+
+Persons表
+
+LastName|	FirstName|	Address	|City|	Year
+-|-|-|-|-
+Adams|	John|	Oxford Street|	London	|1970
+Bush|	George	|Fifth Avenue|	New York|	1975
+Carter|	Thomas|	Changan Street|	Beijing|	1980
+Gates|	Bill|	Xuanwumen 10|	Beijing	|1985
+选取居住在城市 "Beijing" 中的人
+
+```
+SELECT * FROM Persons WHERE City='Beijing'
+```
+
+结果
+
+LastName|	FirstName|	Address|	City|	Year
+-|-|-|-|-
+Carter|	Thomas|	Changan Street|	Beijing	|1980
+Gates|	Bill|	Xuanwumen 10|	Beijing	|1985
+
+请注意，我们在例子中的条件值周围使用的是单引号。  
+SQL 使用单引号来环绕文本值（大部分数据库系统也接受双引号）。如果是数值，请不要使用引号。
+
+文本
+```
+这是正确的：
+SELECT * FROM Persons WHERE FirstName='Bush'
+
+这是错误的：
+SELECT * FROM Persons WHERE FirstName=Bush
+```
+
+数值
+```
+这是正确的：
+SELECT * FROM Persons WHERE Year>1965
+
+这是错误的：
+SELECT * FROM Persons WHERE Year>'1965'
+```
+
+## AND & OR
+AND 和 OR 运算符用于基于一个以上的条件对记录进行过滤。  
+AND 和 OR 可在 WHERE 子语句中把两个或多个条件结合起来。  
+如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。  
+如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。  
+
+表
+
+|LastName	|FirstName	|Address	|City|
+|-|-|-|-|
+|Adams	|John	|Oxford Street	|London|
+|Bush	|George	|Fifth Avenue	|New York|
+|Carter	|Thomas	|Changan Street	|Beijing|
+|Carter	|William	|Xuanwumen 10	|Beijing|
+
+使用 AND 来显示所有姓为 "Carter" 并且名为 "Thomas" 的人：
+```
+SELECT * FROM Persons WHERE FirstName='Thomas' AND LastName='Carter'
+```
+
+结果
+
+|LastName	|FirstName	|Address	|City|
+|-|-|-|-|
+|Carter	|Thomas	|Changan |Street	Beijing|
+
+使用 OR 来显示所有姓为 "Carter" 或者名为 "Thomas" 的人
+```
+SELECT * FROM Persons WHERE firstname='Thomas' OR lastname='Carter'
+```
+
+结果
+
+LastName|	FirstName|	Address|	City
+-|-|-|-
+Carter	|Thomas|	Changan Street	|Beijing
+Carter|	William	|Xuanwumen 10|	Beijing
+
+结合 AND 和 OR 运算符
+```
+SELECT * FROM Persons WHERE (FirstName='Thomas' OR FirstName='William')
+AND LastName='Carter'
+```
+
+结果
+
+LastName|	FirstName|	Address|	City
+-|-|-|-
+Carter	|Thomas|	Changan Street	|Beijing
+Carter|	William	|Xuanwumen 10|	Beijing
+
+## ORDER BY
+ORDER BY 语句用于对结果集进行排序。  
+ORDER BY 语句用于根据指定的列对结果集进行排序。  
+ORDER BY 语句默认按照升序对记录进行排序。  
+如果您希望按照降序对记录进行排序，可以使用 DESC 关键字。
+
+Orders 表
+
+|Company	|OrderNumber|
+|-|-|
+|IBM	|3532|
+|W3School	|2356|
+|Apple|	4698|
+|3School	|6953  |
+
+以字母顺序显示公司名称
+```
+SELECT Company, OrderNumber FROM Orders ORDER BY Company
+```
+
+结果
+
+|Company|	OrderNumber|
+|-|-|
+|Apple|	4698|
+|IBM	|3532|
+|W3School|	6953|
+|W3School	|2356|
+
+以字母顺序显示公司名称（Company），并以数字顺序显示顺序号（OrderNumber）
+```
+SELECT Company, OrderNumber FROM Orders ORDER BY Company, OrderNumber
+```
+
+结果
+
+Company|	OrderNumber
+-|-
+Apple|	4698
+IBM	|3532
+W3School	|2356
+W3School|	6953
+
+以逆字母顺序显示公司名称
+```
+SELECT Company, OrderNumber FROM Orders ORDER BY Company DESC
+```
+
+结果
+
+Company	|OrderNumber
+-|-
+W3School|	6953
+W3School|	2356
+IBM|	3532
+Apple|	4698
+
+以逆字母顺序显示公司名称，并以数字顺序显示顺序号
+```
+SELECT Company, OrderNumber FROM Orders ORDER BY Company DESC, OrderNumber ASC
+```
+
+结果
+
+Company	|OrderNumber
+-|-
+W3School	|2356
+W3School|	6953
+IBM|	3532
+Apple|	4698
+
+## DISTINCT
+
+```
+SELECT DISTINCT 列名称 FROM 表名称
+```
+
+Company|	OrderNumber
+-|-
+IBM|	3532
+W3School|	2356
+Apple|	4698
+W3School|	6953
+
+如果要从 "Company" 列中选取所有的值，我们需要使用 SELECT 语句
+```
+SELECT Company FROM Orders
+```
 
 
-## 触摸事件传递
+结果
 
-### 触摸事件的传递有三个阶段:
+Company|
+-|
+IBM|
+W3School|
+Apple|
+W3School|
 
-- 分发（dispatch): 所有的事件都是通过这个方法分发，对应的方法原型为  
-`public boolean dispatchTouchEvent(MotionEvent event)`  
-如果方法返回true，则当前视图消费事件，不再分发  
-super.dispatchTouchEvent 表示继续分发事件  
-如果当前视图是 ViewGroup，则会调用 interceptTouchEvent
+如需从 Company" 列中仅选取唯一不同的值，我们需要使用 SELECT DISTINCT 语句
 
-- 拦截（intercept): 这个方法在 ViewGroup 中，顾名思义，就是对触摸事件的拦截方法原型为   
-`public boolean onInterceptHoverEvent(MotionEvent event)`
+```
+SELECT DISTINCT Company FROM Orders
+```
 
+结果
 
-- 消费（consume: 事件最终需要被消费，对应的方法原型为  
-`public boolean onTouchEvent(MotionEvent event)`  
-如果方法返回 true，则说明当前视图可以消费事件，不会再向上传递事件  
-返回值为 false，则表示消费事件，继而向上层父视图传递事件，让父视图来处理。
-
-### 触摸事件传递的三个角色：
-
-- Activity: 拥有 dispatchTouchEvent 和 onTouchEvent 两个方法。
-- ViewGroup: 拥有 dispatchTouchEvent 、onInterceptTouchEvent 和 onTouchEvent 三个方法。
-- View: 拥有 dispatchTouchEvnet 和 onTouchEvent 两个方法。
-
-### 触摸事件传递三种类型
-
-- View 不消费事件
-  DOWN 事件不消费，onTouchEvnet 返回 false，父视图 onTouchEvent 方法执行，接下来的
-   MOVE、UP 事件也不会再传递给该 View，而是由消费了 DOWN 事件的父视图接收
-
-![View 不消费事件](https://charmingw.github.io/images/MotionEvent_ignorant_view.png)
-
-- View 消费事件
-  View 消费了 DOWN 事件，onTouchEvent 返回 true，父视图的 onTouchEvent 方法不会被执行，
-  接下来的 MOVE、UP 事件继续传递给该 View，除非传递过程被拦截
-
-![View 消费事件](https://charmingw.github.io/images/MotionEvent_interested_view.png)
-
-- 事件被拦截
-  DOWN 事件被 View 消费了，但接下来的 MOVE、up 事件被拦截了，所以 View 无法消费整套触摸事件
-![  事件被拦截](https://charmingw.github.io/images/MotionEvent_intercept.png)
+Company|
+-|
+IBM|
+W3School|
+Apple|
