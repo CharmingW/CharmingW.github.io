@@ -4,6 +4,7 @@
 - [Android 触摸事件传递](/android/触摸事件传递.md)
 - [Android异步消息机制-深入理解Handler、Looper和MessageQueue之间的关系](/android/Android异步消息机制-深入理解Handler、Looper和MessageQueue关系.md)
 - [Android UI——SpannableString详细解析](/android/Android UI——SpannableString详细解析.md)
+- [Android开源库——EventBus使用教程](/android/Android开源库——EventBus使用教程.md)
 
 ## Java
 - 集合框架
