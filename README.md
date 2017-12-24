@@ -5,6 +5,8 @@
 - [Android异步消息机制-深入理解Handler、Looper和MessageQueue之间的关系](/android/Android异步消息机制-深入理解Handler、Looper和MessageQueue关系.md)
 - [Android UI——SpannableString详细解析](/android/Android UI——SpannableString详细解析.md)
 - [Android开源库——EventBus使用教程](/android/Android开源库——EventBus使用教程.md)
+- [Android开源库——EventBus高级用法](/android/Android开源库——EventBus高级用法.md)
+- [](/android/Android开源库——EventBus源码解析.md)
 
 ## Java
 - 集合框架
